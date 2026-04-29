@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Electricity Bill Predictor</title>
+
+<style>
+    /* Reset */
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    body {
+        background: linear-gradient(135deg, #f0f9ff, #e6f7ff, #f9fcff);
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        color: #333;
+    }
+
+    .container {
+        background: #ffffff;
+        padding: 30px 40px;
+        border-radius: 15px;
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+        width: 100%;
+        max-width: 520px;
+        animation: fadeIn 0.8s ease-in-out;
+    }
+
+    h1 {
+        text-align: center;
+        color: #2c7be5;
+        margin-bottom: 10px;
+    }
+
+    p.subtitle {
+        text-align: center;
+        font-size: 14px;
+        color: #777;
+        margin-bottom: 25px;
+    }
+
+    label {
+        font-weight: 600;
+        margin-bottom: 5px;
+        display: block;
+        color: #444;
+    }
+
+    input, select {
+        width: 100%;
+        padding: 10px;
+        border-radius: 8px;
+        border: 1px solid #dcdcdc;
+        margin-bottom: 18px;
+        font-size: 14px;
+        transition: all 0.3s ease;
+        background-color: #fafcff;
+    }
+
+    input:focus, select:focus {
+        outline: none;
+        border-color: #2c7be5;
+        box-shadow: 0 0 5px rgba(44, 123, 229, 0.3);
+    }
+
+    .btn {
+        width: 100%;
+        padding: 12px;
+        background: linear-gradient(135deg, #4facfe, #00f2fe);
+        border: none;
+        color: white;
+        font-size: 16px;
+        font-weight: bold;
+        border-radius: 10px;
+        cursor: pointer;
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+    }
+
+    .result {
+        margin-top: 20px;
+        padding: 15px;
+        background: #eaf7ff;
+        border-left: 5px solid #2c7be5;
+        border-radius: 8px;
+        font-size: 18px;
+        font-weight: bold;
+        text-align: center;
+        color: #1a5fb4;
+    }
+
+    .footer {
+        margin-top: 20px;
+        font-size: 12px;
+        color: #888;
+        text-align: center;
+    }
+
+    @keyframes fadeIn {
+        from {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    /* Responsive */
+    @media (max-width: 600px) {
+        .container {
+            margin: 15px;
+            padding: 25px;
+        }
+    }
+</style>
+
+</head>
+<body>
+
+<div class="container">
+
+<h1>⚡ Electricity Bill Predictor</h1>
+<p class="subtitle">Predict your electricity bill instantly using AI</p>
+
+<form action="/predict" method="post">
+
+<label>Units Consumed</label>
+<input type="number" name="units" placeholder="Enter units consumed" required>
+
+<label>Number of Appliances</label>
+<input type="number" name="appliances" placeholder="e.g., 5" required>
+
+<label>Usage Hours per Day</label>
+<input type="number" step="0.1" name="hours" placeholder="e.g., 6.5" required>
+
+<label>Season</label>
+<select name="season">
+<option>Summer</option>
+<option>Winter</option>
+<option>Monsoon</option>
+</select>
+
+<label>Electricity Rate per Unit (₹)</label>
+<input type="number" step="0.1" name="rate" placeholder="e.g., 7.5" required>
+
+<button type="submit" class="btn">🔮 Predict Bill</button>
+
+</form>
+
+{% if prediction_text %}
+<div class="result">
+    {{ prediction_text }}
+</div>
+{% endif %}
+
+<div class="footer">
+    © 2026 Smart Electricity Bill Prediction System 
+</div>
+
+</div>
+
+</body>
+</html>
